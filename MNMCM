@@ -1,0 +1,16 @@
+N = int(input())
+B = list(map(int, input().split(" ")))
+
+hasil_xor = 1
+
+if N < 0 or N > 200:
+    exit()
+
+for i in range(N):
+    for j in range(i + 1, N):
+        hasil_operasi = B[i] ^ B[j]
+        hasil_xor *= hasil_operasi
+        if hasil_xor == 0:
+            break
+
+print(hasil_xor)
