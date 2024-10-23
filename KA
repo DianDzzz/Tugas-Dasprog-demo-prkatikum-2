@@ -1,0 +1,30 @@
+t = int(input())                        # jumlah testcase
+jawaban = []
+
+for i in range(t):                      # perulangan input sesuai jumlah testcase
+    n, k = map(int, input().split())    # n = jumlah elemen array, k = batas ukuran sub array
+    A = list(map(int, input().split())) # isi array
+    q = int(input())                    # 1 mencari nilai maximum array, 2 mencari nilai minimum array
+
+    if q == 1:
+        max_sum = float("-inf")
+        for ukuran_k in range(1, k + 1):
+            window_sum = sum(A[:ukuran_k])
+            max_sum = max(max_sum, window_sum)
+            for x in range(1, n - ukuran_k + 1):
+                window_sum = window_sum - A[x - 1] + A[x + ukuran_k - 1]
+                max_sum = max(max_sum, window_sum)
+        jawaban.append(max_sum)
+    
+    elif q == 2:
+        min_sum = float("inf")
+        for ukuran_k in range(1, k + 1):
+            window_sum = sum(A[:ukuran_k])
+            min_sum = min(min_sum, window_sum)
+            for x in range(1, n - ukuran_k + 1):
+                window_sum = window_sum - A[x - 1] + A[x + ukuran_k - 1]
+                min_sum = min(min_sum, window_sum)
+        jawaban.append(min_sum)
+
+for hasil in jawaban:
+    print(hasil)
